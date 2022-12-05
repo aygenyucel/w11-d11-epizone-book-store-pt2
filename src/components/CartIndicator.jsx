@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { setUsernameAction } from "./../redux/actions/index";
+import {
+  setUsernameAction,
+  setUsernameActionAsync,
+} from "./../redux/actions/index";
 
 //useSelector is a Redux Hook coming from the bindings library
 //that can grant to this component "read access" to the Redux Store
@@ -22,7 +25,7 @@ const CartIndicator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(setUsernameAction(value));
+    dispatch(setUsernameActionAsync(value));
   };
 
   return (
