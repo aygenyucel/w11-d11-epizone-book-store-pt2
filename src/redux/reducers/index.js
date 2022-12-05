@@ -1,3 +1,5 @@
+import { REMOVE_FROM_CART, ADD_TO_CART, SET_USERNAME } from "../actions";
+
 //the reducer function s in charge of computing the new application state
 //whenever an action gets dispatched
 
@@ -14,6 +16,12 @@ const initialState = {
   cart: {
     content: [], //we're going to put our books here!
   },
+  //I need now to prepare a place for storing the user's username
+  //since it doesn't belong to the cart "slice", let's create a new one
+  //for saving user info
+  user: {
+    name: "",
+  },
 };
 
 //let's force the initialState to be the first value for the
@@ -26,7 +34,7 @@ const mainReducer = (state = initialState, action) => {
     //but now, just for starting, lets write just the default
     // so we can conclude this function and finish our store/index.js
 
-    case "ADD_TO_CART":
+    case ADD_TO_CART:
       //what are we going to do in every case?
       //we are going to return the new state of the app
       return {
@@ -42,7 +50,7 @@ const mainReducer = (state = initialState, action) => {
         },
       };
 
-    case "REMOVE_FROM_CART":
+    case REMOVE_FROM_CART:
       return {
         ...state,
         cart: {
@@ -55,6 +63,14 @@ const mainReducer = (state = initialState, action) => {
         },
       };
 
+    case SET_USERNAME:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          name: action.payload, //this is the new username, just set
+        },
+      };
     default:
       return state;
     //in the case of an unknown action.type, don't break anything!!!!
